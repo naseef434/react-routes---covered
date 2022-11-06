@@ -1,0 +1,10 @@
+.title{
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: rgb(210, 255, 237);
+}
+
+ .body {
+    font-size: 12px;
+    color: slategray;
+}

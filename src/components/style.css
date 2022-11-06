@@ -1,0 +1,18 @@
+.header {
+    background-color: rgb(35, 84, 169);
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.header span {
+    padding: 5px;
+    display: inline-block;
+}
+
+.header .active {
+    background-color: rgb(12, 48, 150);
+    border-bottom: 3px solid whitesmoke;
+}
