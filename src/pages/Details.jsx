@@ -1,38 +1,49 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import './details.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 
 export default function Details() {
+
+const location = useLocation()
+const state = location.state || {}
 const {userId} = useParams()
-// console.log('useparams ' , userId);
+const [user, setuser] = useState(state.data)
 
-const [data, setdata] = useState()
-  
+
+const navigate = useNavigate()
+
+
 useEffect(() => {
-  fetchApi()
+  if(!user){
 
-}, [userId])
+    fetchApi();
+  }
+}, [userId,user]);
 
-const fetchApi =  async () => {
-  const results = await axios.get('https://jsonplaceholder.typicode.com/users/'+userId)
-  setdata(results?.data)
-}
+const fetchApi = async () => {
+  const results = await axios.get(
+    "https://jsonplaceholder.typicode.com/users/"+userId
+  );
+  setuser(results?.data);
+};
+
 // console.log(data);
     return (
     <div className='page'>
        <div className="title">
-            {data?.name}
+            {user?.name}
        </div>
        <div className="body">
-            {data?.username}
+            {user?.username}
        </div>
        <div className="body">
-            {data?.email}
+            {user?.email}
         </div>
         <div className="body">
         
         </div>
+        <button onClick={()=>{navigate(-1)}}>go back</button>
     </div>
   )
 }

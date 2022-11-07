@@ -8,6 +8,7 @@ import Users from "./pages/Users";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Details from "./pages/Details";
+import PagenoutFound from "./pages/PagenoutFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/users" element={<Users />} />
       <Route path="/usage" element={<Usage />} />
       <Route path="/details/:userId" element={<Details />} />
+      <Route path="*" element={<PagenoutFound />} />
 
     </Routes>
     </>

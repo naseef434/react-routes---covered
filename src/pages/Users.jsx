@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import "./users.css";
 import InputLabel from "@mui/material/InputLabel";
@@ -11,13 +11,15 @@ import { Box } from "@mui/material";
 
 export default function Users() {
   const [searchparams, setSearchparams] = useSearchParams();
-  
+  const navigate = useNavigate()
   const [age, setAge] = React.useState("");
   console.log("age : ", age);
+  
   const handleChange = (event) => {
     setAge(event.target.value);
     setSearchparams({
       class: event.target.value,
+      hello:"naseef"
     });
   }; 
 
@@ -73,9 +75,13 @@ export default function Users() {
           return cls == itm.id;
         })
         .map((itm, key) => (
-          <div className="users-item">
+          <div className="users-item" onClick={()=>{navigate(`/details/${itm.id}`,{
+            state : {
+              data :itm, 
+            }
+          })}}>
             <div className="title">
-              <Link to={`/details/${itm.id}`}>{itm.name}</Link>
+              {itm.name}
             </div>
             <div className="discription">{itm.website}</div>
             <div className="discription">{itm.email}</div>
